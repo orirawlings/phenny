@@ -11,7 +11,7 @@ default = "Jimmy John's"
 def choose_lunch(phenny, input):
     choice = str(random.choice(load_lunches(phenny)))
     phenny.say(' '.join(('Why not eat at',choice,'for lunch today?')))
-choose_lunch.rule = r'(?i)(.*)\b(lunch|food)\b(.*)(\?|!)$'
+choose_lunch.commands = ['food', 'lunch']
 
 def ensure(path):
     if os.path.isfile(path):
