@@ -9,7 +9,7 @@ import os
 default = "Jimmy John's"
 
 def choose_lunch(phenny, input):
-    choice = str(random.choice(load_lunches(phenny)))
+    choice = str(random.choice(load_lunches(phenny))) if input.nick != 'tristan' else 'Boston Blackies'
     phenny.say(' '.join(('Why not eat at',choice,'for lunch today?')))
 choose_lunch.commands = ['food', 'lunch']
 
