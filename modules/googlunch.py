@@ -9,7 +9,7 @@ import random
 import os
 import urllib2
 import json
-import string
+import urllib
 
 default = 'Cafe Baci'
 
@@ -28,9 +28,7 @@ def get_directions(lat,lng):
     return urllib2.urlopen("http://tinyurl.com/api-create.php?url="+big_url).read()
 
 def get_google_url(choice):
-    choice=choice.replace(" ","+")
-    url='http://www.google.com/search?q='+choice+'+downtown+chicago'
-    return url
+    return 'http://www.google.com/search?'+urllib.urlencode({'q':choice+' '+'60661'})
 
 def ensure(path):
     if os.path.isfile(path):
