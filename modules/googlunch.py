@@ -9,22 +9,26 @@ import random
 import os
 import urllib2
 import json
+import urllib
 
 default = 'Cafe Baci'
 
 def choose_lunch(phenny, input):
     lat,lng,choice=load_places_from_google()
     tiny_url=get_directions(lat,lng)
+    google_url=get_google_url(choice)
     #print tiny_url
     phenny.say(' '.join(('Why not eat at',choice,'for lunch today?')))
     phenny.say(tiny_url)
+    phenny.say(google_url)
 choose_lunch.commands = ['googlunch', 'googfood','gl']
 
 def get_directions(lat,lng):
     big_url='http://maps.google.com/maps?saddr=500+W+Madison+St,+Chicago,+IL+60606&daddr='+lat+','+lng+'&dirflg=w'
     return urllib2.urlopen("http://tinyurl.com/api-create.php?url="+big_url).read()
 
-
+def get_google_url(choice):
+    return 'http://www.google.com/search?'+urllib.urlencode({'q':choice+' '+'60661'})
 
 def ensure(path):
     if os.path.isfile(path):
